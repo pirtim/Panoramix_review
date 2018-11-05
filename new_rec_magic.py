@@ -17,7 +17,7 @@ def reduce_full_rec(func, iterable):
             head, rest = func(rest[0], rest[1:])
             res.append(head)
             return helper_reduce_full(res, rest)
-    return helper_reduce_full([], iterable)[0]
+    return helper_reduce_full([], iterable)
 
 def rec_func(exp_left):
     i = exp_left[0]
