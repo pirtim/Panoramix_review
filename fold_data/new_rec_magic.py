@@ -43,7 +43,7 @@ def opcode_OR(exp):
     def meth(head, tail):
         return (head, tail) if get_opcode(head) != 'MASK_SHL' else meth_sub(head, tail)
 
-    return ['DATA'] + reduce_full(meth, exp)
+    return ['DATA'] + reduce_full_rec(meth, exp)
 
 def opcode_MASK_SHL(exp):
     size, offset, shl, exp = exp
