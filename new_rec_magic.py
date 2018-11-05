@@ -9,6 +9,16 @@ def reduce_full(func, iterable):
         iterable = new_tail
     return res
 
+def reduce_full_rec(func, iterable):
+    def helper_reduce_full(res, rest):
+        if len(rest) == 0:
+            return res
+        else:
+            head, rest = func(rest[0], rest[1:])
+            res.append(head)
+            return helper_reduce_full(res, rest)
+    return helper_reduce_full([], iterable)[0]
+
 def rec_func(exp_left):
     i = exp_left[0]
     j = exp_left[1] if len(exp_left) > 1 else None
@@ -46,5 +56,5 @@ def fold_data(exp):
         'MASK_SHL' : opcode_MASK_SHL,
     }.get(
         get_opcode(exp),
-        lambda exp: exp
+        lambda: exp
     )(exp[1:])
